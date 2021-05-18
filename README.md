@@ -19,7 +19,9 @@ Uygulama ana dizininde bir terminal açın ve aşağıdaki komutları yazın.
 ### Ekran Görüntüleri
 
 ![Page1](https://raw.githubusercontent.com/serdarsari/game-rating-system/master/assets/Gorsel1.png)
+___
 
 ![Page2](https://raw.githubusercontent.com/serdarsari/game-rating-system/master/assets/Gorsel2.png)
+___
 
 ![Page3](https://raw.githubusercontent.com/serdarsari/game-rating-system/master/assets/Gorsel3.png)
