@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+    <title>Oyun Değerlendirme Uygulaması</title>
+
+    <style>
+        .custom-switch.custom-switch-md .custom-control-label {
+            padding-left: 2rem;
+            padding-bottom: 1.5rem;
+        }
+
+        .custom-switch.custom-switch-md .custom-control-label::before {
+            height: 1.5rem;
+            width: calc(2rem + 0.75rem);
+            border-radius: 3rem;
+        }
+
+        .custom-switch.custom-switch-md .custom-control-label::after {
+            width: calc(1.5rem - 4px);
+            height: calc(1.5rem - 4px);
+            border-radius: calc(2rem - (1.5rem / 2));
+        }
+
+        .custom-switch.custom-switch-md .custom-control-input:checked~.custom-control-label::after {
+            transform: translateX(calc(1.5rem - 0.25rem));
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="container">
+        <div class="row d-flex justify-content-center mt-2">
+            <h1>Game Rating System</h1>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <h5>(Oyun Değerlendirme Sistemi)</h5>
+        </div>
+        <hr>
+        <div class="row justify-content-center">
+            <a href="{% url 'dogruluk_oranlari' %}" class="btn btn-primary text-center">Sistemin Doğruluk Oranını Görmek İçin Tıkla</a>
+        </div>
+        <p class="small d-flex justify-content-center text-primary">* Oyununuz aşağıdakilerden hangilerini içeriyorsa, onları&#160;<span style="font-weight: bold;">aktif</span>&#160;hale getirin lütfen.</p>
+        <hr>
+        <form method="post" action="sonuc">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="custom-control custom-switch custom-switch-md">
+    
+                        <input type="checkbox" name="console" value="1" class="custom-control-input" id="customSwitch1">
+                        <label class="custom-control-label" for="customSwitch1">Konsol</label>
+                    </div>
+                    <div class="custom-control custom-switch custom-switch-md">
+    
+                        <input type="checkbox" name="alcohol_reference" value="1" class="custom-control-input" id="customSwitch2">
+                        <label class="custom-control-label" for="customSwitch2">Alkol Referansı</label>
+                    </div>
+                    <div class="custom-control custom-switch custom-switch-md">
+    
+                        <input type="checkbox" name="animated_blood" value="1" class="custom-control-input" id="customSwitch3">
+                        <label class="custom-control-label" for="customSwitch3">Animasyonlu Kan</label>
+                    </div>
+                    <div class="custom-control custom-switch custom-switch-md">
+    
+                        <input type="checkbox" name="blood" value="1" class="custom-control-input" id="customSwitch4">
+                        <label class="custom-control-label" for="customSwitch4">Kan</label>
+                    </div>
+                    <div class="custom-control custom-switch custom-switch-md">
+    
+                        <input type="checkbox" name="blood_and_gore" value="1" class="custom-control-input" id="customSwitch5">
+                        <label class="custom-control-label" for="customSwitch5">Kan ve Vahşet</label>
+                    </div>
+                    <div class="custom-control custom-switch custom-switch-md">
+    
+                        <input type="checkbox" name="cartoon_violence" value="1" class="custom-control-input" id="customSwitch6">
+                        <label class="custom-control-label" for="customSwitch6">Çizgi Film Şiddeti</label>
+                    </div>
+                    <div class="custom-control custom-switch custom-switch-md">
+    
+                        <input type="checkbox" name="crude_humor" value="1" class="custom-control-input" id="customSwitch7">
+                        <label class="custom-control-label" for="customSwitch7">Kaba Mizah</label>
+                    </div>
+                    <div class="custom-control custom-switch custom-switch-md">
+    
+                        <input type="checkbox" name="drug_reference" value="1" class="custom-control-input" id="customSwitch8">
+                        <label class="custom-control-label" for="customSwitch8">Uyuşturucu Referansı</label>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="custom-control custom-switch custom-switch-md">
+    
+                        <input type="checkbox" name="fantasy_violence" value="1" class="custom-control-input" id="customSwitch9">
+                        <label class="custom-control-label" for="customSwitch9">Fantazi Şiddet</label>
+                    </div>
+                    <div class="custom-control custom-switch custom-switch-md">
+    
+                        <input type="checkbox" name="intense_violence" value="1" class="custom-control-input" id="customSwitch10">
+                        <label class="custom-control-label" for="customSwitch10">Yoğun Şiddet</label>
+                    </div>
+                    <div class="custom-control custom-switch custom-switch-md">
+    
+                        <input type="checkbox" name="language" value="1" class="custom-control-input" id="customSwitch11">
+                        <label class="custom-control-label" for="customSwitch11">Dil</label>
+                    </div>
+                    <div class="custom-control custom-switch custom-switch-md">
+    
+                        <input type="checkbox" name="lyrics" value="1" class="custom-control-input" id="customSwitch12">
+                        <label class="custom-control-label" for="customSwitch12">Söz</label>
+                    </div>
+                    <div class="custom-control custom-switch custom-switch-md">
+    
+                        <input type="checkbox" name="mature_humor" value="1" class="custom-control-input" id="customSwitch13">
+                        <label class="custom-control-label" for="customSwitch13">Olgun Mizah</label>
+                    </div>
+                    <div class="custom-control custom-switch custom-switch-md">
+    
+                        <input type="checkbox" name="mild_blood" value="1" class="custom-control-input" id="customSwitch14">
+                        <label class="custom-control-label" for="customSwitch14">Hafif Kan</label>
+                    </div>
+                    <div class="custom-control custom-switch custom-switch-md">
+    
+                        <input type="checkbox" name="mild_cartoon_violence" value="1" class="custom-control-input" id="customSwitch15">
+                        <label class="custom-control-label" for="customSwitch15">Hafif Çizgi Film Şiddeti</label>
+                    </div>
+                    <div class="custom-control custom-switch custom-switch-md">
+    
+                        <input type="checkbox" name="mild_fantasy_violence" value="1" class="custom-control-input" id="customSwitch16">
+                        <label class="custom-control-label" for="customSwitch16">Hafif Fantezi Şiddet</label>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="custom-control custom-switch custom-switch-md">
+    
+                        <input type="checkbox" name="mild_language" value="1" class="custom-control-input" id="customSwitch17">
+                        <label class="custom-control-label" for="customSwitch17">Hafif Dil</label>
+                    </div>
+                    <div class="custom-control custom-switch custom-switch-md">
+    
+                        <input type="checkbox" name="mild_lyrics" value="1" class="custom-control-input" id="customSwitch18">
+                        <label class="custom-control-label" for="customSwitch18">Hafif Söz</label>
+                    </div>
+                    <div class="custom-control custom-switch custom-switch-md">
+    
+                        <input type="checkbox" name="mild_suggestive_themes" value="1" class="custom-control-input" id="customSwitch19">
+                        <label class="custom-control-label" for="customSwitch19">Hafif Müstehcen Temalar</label>
+                    </div>
+                    <div class="custom-control custom-switch custom-switch-md">
+    
+                        <input type="checkbox" name="mild_violence" value="1" class="custom-control-input" id="customSwitch20">
+                        <label class="custom-control-label" for="customSwitch20">Hafif Şiddet</label>
+                    </div>
+                    <div class="custom-control custom-switch custom-switch-md">
+    
+                        <input type="checkbox" name="no_descriptors" value="1"class="custom-control-input" id="customSwitch21">
+                        <label class="custom-control-label" for="customSwitch21">Tanımlayıcı Yok</label>
+                    </div>
+                    <div class="custom-control custom-switch custom-switch-md">
+    
+                        <input type="checkbox" name="nudity" value="1" class="custom-control-input" id="customSwitch22">
+                        <label class="custom-control-label" for="customSwitch22">Çıplaklık</label>
+                    </div>
+                    <div class="custom-control custom-switch custom-switch-md">
+    
+                        <input type="checkbox" name="partial_nudity" value="1" class="custom-control-input" id="customSwitch23">
+                        <label class="custom-control-label" for="customSwitch23">Kısmi Çıplaklık</label>
+                    </div>
+                    <div class="custom-control custom-switch custom-switch-md">
+    
+                        <input type="checkbox" name="sexual_content" value="1" class="custom-control-input" id="customSwitch24">
+                        <label class="custom-control-label" for="customSwitch24">Cinsel İçerik</label>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="custom-control custom-switch custom-switch-md">
+    
+                        <input type="checkbox" name="sexual_themes" value="1" class="custom-control-input" id="customSwitch25">
+                        <label class="custom-control-label" for="customSwitch25">Cinsel Temalar</label>
+                    </div>
+                    <div class="custom-control custom-switch custom-switch-md">
+    
+                        <input type="checkbox" name="simulated_gambling" value="1" class="custom-control-input" id="customSwitch26">
+                        <label class="custom-control-label" for="customSwitch26">Kumar Simülasyonu</label>
+                    </div>
+                    <div class="custom-control custom-switch custom-switch-md">
+    
+                        <input type="checkbox" name="strong_janguage" value="1" class="custom-control-input" id="customSwitch27">
+                        <label class="custom-control-label" for="customSwitch27">Sert Dil</label>
+                    </div>
+                    <div class="custom-control custom-switch custom-switch-md">
+    
+                        <input type="checkbox" name="strong_sexual_content" value="1" class="custom-control-input" id="customSwitch28">
+                        <label class="custom-control-label" for="customSwitch28">Güçlü Cinsel İçerik</label>
+                    </div>
+                    <div class="custom-control custom-switch custom-switch-md">
+    
+                        <input type="checkbox" name="suggestive_themes" value="1" class="custom-control-input" id="customSwitch29">
+                        <label class="custom-control-label" for="customSwitch29">Müstehcen Temalar</label>
+                    </div>
+                    <div class="custom-control custom-switch custom-switch-md">
+    
+                        <input type="checkbox" name="use_of_alcohol" value="1" class="custom-control-input" id="customSwitch30">
+                        <label class="custom-control-label" for="customSwitch30">Alkol Kullanımı</label>
+                    </div>
+                    <div class="custom-control custom-switch custom-switch-md">
+    
+                        <input type="checkbox" name="use_of_drugs_and_alcohol" value="1" class="custom-control-input" id="customSwitch31">
+                        <label class="custom-control-label" for="customSwitch31">Uyuşturucu ve Alkol Kullanımı</label>
+                    </div>
+                    <div class="custom-control custom-switch custom-switch-md">
+    
+                        <input type="checkbox" name="violence" value="1" class="custom-control-input" id="customSwitch32">
+                        <label class="custom-control-label" for="customSwitch32">Şiddet</label>
+                    </div>
+                </div>
+    
+            </div>
+    
+            <div class="row d-flex justify-content-center mt-2 mb-4">
+                <button type="submit" class="btn btn-primary">Değerlendirme Sonucunu Göster</button>
+    
+            </div>
+        </form>
+        
+    </div>
+
+    <hr>
+    <footer style="text-align:center">
+        İBRAHİM SERDAR SARI - 201713709014
+    </footer>
+    <br>
+
+
+
+
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
